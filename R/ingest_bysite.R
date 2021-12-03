@@ -296,7 +296,9 @@ ingest_bysite <- function(
             df_tmp <- df_tmp %>% 
               mutate(month = lubridate::month(date)) %>% 
               left_join(df_bias %>% dplyr::select(month, scale), by = "month") %>% 
-              mutate(prec = prec * scale, rain = rain * scale, snow = snow * scale) %>% 
+              mutate(prec = ifelse(is.na(prec), prec, prec * scale),
+                     rain = ifelse(is.na(rain), rain, rain * scale),
+                     snow = ifelse(is.na(snow), snow, snow * scale)) %>% 
               dplyr::select(-scale, -month)
           } else {
             df_tmp <- df_tmp %>% 
