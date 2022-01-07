@@ -660,7 +660,7 @@ ingest_globalfields_watch_byvar <- function( ddf, siteinfo, dir, varnam ){
   return( ddf )
 }
 
-ingest_globalfields_wfde5_byvar <- function( ddf, siteinfo, dir, varnam ){
+ingest_globalfields_wfde5_byvar <- function( ddf, siteinfo, dir, varnam, timescale = "h" ){
   
   dirn <- paste0( dir, "/", varnam, "/" )
   
