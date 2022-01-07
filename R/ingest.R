@@ -185,6 +185,9 @@ ingest <- function(
         path <- paste0(dir, "/WFDEI-elevation.nc")
       } else if (source == "cru"){
         path <- paste0(dir, "/elv_cru_halfdeg.nc")
+      } else if (source == "watch_wfdei"){
+        path <- paste0(str_replace(dir, "wfde5", "watch_wfdei"), "/WFDEI-elevation.nc")
+        rlang::inform("CHecking for nearest land point. WFDE5 as source uses WFDEI elevation file.")
       }
       if (!file.exists(path)) rlang::abort(paste0("Looking for elevation file for determining closest land cell, but not found under ", path))
       rasta <- raster(path)
